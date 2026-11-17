@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data-vault-platform"
+version = "1.0.0"
+description = "Data Vault 2.0 modelling platform: salted hash keys, hubs/links/satellites, hash-diff incremental loads, PIT/bridge tables, governed marts, reconciliation and hash-chained audit — deterministic in-process engine, no external services"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110,<1",
+    "uvicorn[standard]>=0.29,<1",
+    "pydantic>=2.6,<3",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0,<9", "httpx>=0.27,<1"]
+
+[project.scripts]
+data-vault = "datavault.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
